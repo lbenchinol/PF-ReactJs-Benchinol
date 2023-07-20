@@ -11,7 +11,6 @@ const ItemListContainer = ({ greeting }) => {
       >
         {greeting}
       </Text>
-      {/* <p>{greeting}</p> */}
     </div>
   )
 }

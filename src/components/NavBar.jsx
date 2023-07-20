@@ -5,11 +5,11 @@ import Logo from '../assets/Logo-TS.png'
 
 const NavBar = () => {
     return (
-        <Flex>
-            <Box>
+        <Flex align="center" justify="center">
+            <Box m={2} mx='5'>
                 <img src={Logo} alt="Logo Termo Store" width='50px' height='50px'/>
             </Box>
-            <Box>
+            <Box m={1}>
                 <Menu>
                     <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                         Productos
@@ -22,7 +22,7 @@ const NavBar = () => {
                 </Menu>
             </Box>
             <Spacer />
-            <Box>
+            <Box mr='5'>
                 <CartWidget />
             </Box>
         </Flex>

@@ -1,10 +1,13 @@
 import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer'
+import { Box } from '@chakra-ui/react'
 
 const App = () => {
   return (
     <>
-      <NavBar />
+      <Box bg='#4193bf'>
+        <NavBar />
+      </Box>
       <ItemListContainer
         greeting="Bienvenido a Termo Store!"
       />
