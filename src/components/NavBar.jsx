@@ -6,8 +6,8 @@ import Logo from '../assets/Logo-TS.png'
 const NavBar = () => {
     return (
         <Flex align="center" justify="center">
-            <Box m={2} mx='5'>
-                <img src={Logo} alt="Logo Termo Store" width='50px' height='50px'/>
+            <Box m={2} mx='3'>
+                <img src={Logo} alt="Logo Termo Store" width='100px' height='50px'/>
             </Box>
             <Box m={1}>
                 <Menu>
