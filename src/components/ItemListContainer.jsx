@@ -1,6 +1,6 @@
 import { Text } from '@chakra-ui/react';
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
   return (
     <div>
       <Text
@@ -9,7 +9,6 @@ const ItemListContainer = ({ greeting }) => {
         fontSize='5xl'
         fontWeight='extrabold'
       >
-        {greeting}
       </Text>
     </div>
   )

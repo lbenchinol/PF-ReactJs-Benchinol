@@ -21,7 +21,7 @@ const App = () => {
 
 
         <ItemListContainer />
-        <ItemDetailContainer/>
+        {/* <ItemDetailContainer/> */}
 
 
         </Routes>
