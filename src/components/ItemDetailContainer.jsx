@@ -1,9 +1,6 @@
-import { useParams } from 'react-router'
-import ItemList from './ItemList'
+import ItemDetail from './ItemDetail'
 
-const ItemListContainer = () => {
-
-  const { category } = useParams()
+const ItemDetailContainer = () => {
 
   const products = [
     { id: 1, name: "Producto A", description: "Descripcionde Producto A", stock: 10, category: "cat1" },
@@ -30,13 +27,11 @@ const ItemListContainer = () => {
       console.log(error)
     })
 
-  const filteredProducts = products.filter((product) => product.category === category)
-
   return (
     <>
-      <ItemList products={filteredProducts} />
+      <ItemDetail products={products} />
     </>
   )
 }
 
-export default ItemListContainer
+export default ItemDetailContainer
