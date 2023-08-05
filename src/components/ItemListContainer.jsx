@@ -6,11 +6,15 @@ const ItemListContainer = () => {
   const { category } = useParams()
 
   const products = [
-    { id: 1, name: "Producto A", description: "Descripcionde Producto A", stock: 10, category: "cat1" },
-    { id: 2, name: "Producto B", description: "Descripcionde Producto B", stock: 5, category: "cat2" },
-    { id: 3, name: "Producto C", description: "Descripcionde Producto C", stock: 50, category: "cat3" },
-    { id: 4, name: "Producto D", description: "Descripcionde Producto D", stock: 30, category: "cat1" },
-    { id: 5, name: "Producto E", description: "Descripcionde Producto E", stock: 100, category: "cat3" },
+    { id: 1, name: "Termo 2L", description: "Descripcion de Termo 2L", stock: 20, category: "termos", price: 400 },
+    { id: 2, name: "Termo 1.5L", description: "Descripcion de Termo 1.5L", stock: 10, category: "termos", price: 300 },
+    { id: 3, name: "Termo 800ml", description: "Descripcion de Termo 800ml", stock: 5, category: "termos", price: 250 },
+    { id: 4, name: "Botella térmica 1L", description: "Descripcion de Botella térmica 1L", stock: 50, category: "botellas", price: 270 },
+    { id: 5, name: "Botella térmica 750ml", description: "Descripcion de Botella térmica 750ml", stock: 30, category: "botellas", price: 230 },
+    { id: 6, name: "Botella térmica con pico 750ml", description: "Descripcion de Botella térmica con pico 750ml", stock: 100, category: "botellas", price: 250 },
+    { id: 7, name: "Botella térmica con pico 500ml", description: "Descripcion de Botella térmica con pico 500ml", stock: 70, category: "botellas", price: 220 },
+    { id: 8, name: "Vaso térmico 500ml", description: "Descripcion de Vaso térmico 500ml", stock: 80, category: "vasos", price: 150 },
+    { id: 9, name: "Vaso térmico 250ml", description: "Descripcion de Vaso térmico 250ml", stock: 30, category: "vasos", price: 100 },
   ]
 
   const getProducts = new Promise((resolve, reject) => {

@@ -1,8 +1,13 @@
 import React from 'react'
+import { Text } from '@chakra-ui/react'
 
 const Cart = () => {
   return (
-    <div>Cart</div>
+    <>
+      <Text fontSize={100} fontWeight={700} textAlign={'center'}>
+        Cart!
+      </Text>
+    </>
   )
 }
 

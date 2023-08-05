@@ -1,8 +1,13 @@
 import React from 'react'
+import { Text } from '@chakra-ui/react'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <Text fontSize={100} fontWeight={700} textAlign={'center'}>
+        Home!
+      </Text>
+    </>
   )
 }
 
