@@ -5,26 +5,32 @@ import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer'
 import Home from './components/Home'
 import Cart from './components/Cart'
-
+import { ShoppingCartProvider } from './context/ShoppingCartContext'
 
 const App = () => {
   return (
+
     <BrowserRouter>
 
-      <Box bg='#4193bf'>
-        <NavBar />
-      </Box>
+      <ShoppingCartProvider>
 
-      <Routes>
+        <Box bg='#4193bf'>
+          <NavBar />
+        </Box>
 
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/cart' element={<Cart />} />
-        <Route exact path='/category/:category' element={<ItemListContainer />} />
-        <Route exact path='/item/:id' element={<ItemDetailContainer />} />
+        <Routes>
 
-      </Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/cart' element={<Cart />} />
+          <Route exact path='/category/:category' element={<ItemListContainer />} />
+          <Route exact path='/item/:id' element={<ItemDetailContainer />} />
+
+        </Routes>
+
+      </ShoppingCartProvider>
 
     </BrowserRouter>
+
   )
 }
 
