@@ -20,6 +20,9 @@ const NavBar = () => {
                     </MenuButton>
                     <MenuList>
                         <MenuItem>
+                            <Link to={`/all`}>Todos los productos</Link>
+                        </MenuItem>
+                        <MenuItem>
                             <Link to={`/category/termos`}>Termos</Link>
                         </MenuItem>
                         <MenuItem>

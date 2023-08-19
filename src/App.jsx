@@ -5,14 +5,33 @@ import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer'
 import Home from './components/Home'
 import Cart from './components/Cart'
-import { ShoppingCartProvider } from './context/ShoppingCartContext'
+import ShoppingCartContext from './context/ShoppingCartContext'
+import { useEffect, useState } from 'react'
+import Loading from './components/Loading'
 
 const App = () => {
+
+  const [loading, setLoading] = useState(true)
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+  }, [])
+
+
+  if (loading) {
+    return <Loading />
+  }
+
+
+
   return (
 
     <BrowserRouter>
 
-      <ShoppingCartProvider>
+      <ShoppingCartContext>
 
         <Box bg='#4193bf'>
           <NavBar />
@@ -23,11 +42,12 @@ const App = () => {
           <Route exact path='/' element={<Home />} />
           <Route exact path='/cart' element={<Cart />} />
           <Route exact path='/category/:category' element={<ItemListContainer />} />
+          <Route exact path='/all' element={<ItemListContainer />} />
           <Route exact path='/item/:id' element={<ItemDetailContainer />} />
 
         </Routes>
 
-      </ShoppingCartProvider>
+      </ShoppingCartContext>
 
     </BrowserRouter>
 

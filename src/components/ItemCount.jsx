@@ -1,18 +1,27 @@
 import { MinusIcon, AddIcon } from '@chakra-ui/icons'
 import { Text, IconButton, Box, Button, Flex } from '@chakra-ui/react'
 import { BsFillCartPlusFill } from "react-icons/bs"
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../context/ShoppingCartContext'
 
-const ItemCount = ({ stock }) => {
+const ItemCount = ({ product }) => {
+
+  console.log(product)
 
   const [count, setCount] = useState(1)
 
+  const { cart } = useContext(CartContext)
+
   const add = (e) => {
-    count < stock ? setCount(count + 1) : e.preventDefault()
+    count < product.stock ? setCount(count + 1) : e.preventDefault()
   }
 
   const subtract = (e) => {
-    count > 0 ? setCount(count - 1) : e.preventDefault()
+    count > 1 ? setCount(count - 1) : e.preventDefault()
+  }
+
+  const addToCart = (e) => {
+
   }
 
   return (
@@ -45,8 +54,17 @@ const ItemCount = ({ stock }) => {
         />
       </Flex>
 
+      <Text textAlign={'center'} my={3} border={'1px'} borderRadius={'full'}>
+        <p>Stock disponible: {product.stock}</p>
+      </Text>
+
       <Flex>
-        <Button rightIcon={<BsFillCartPlusFill />} colorScheme='blue' variant='outline'>
+        <Button
+          onClick={addToCart}
+          rightIcon={<BsFillCartPlusFill />}
+          colorScheme='blue'
+          variant='outline'
+        >
           Agregar al carrito
         </Button>
       </Flex>
