@@ -39,7 +39,10 @@ const ItemDetail = ({ products }) => {
             </Center>
             <Center>
               <ItemCount
-                product={filteredProducts[0]}
+                id={p.id}
+                name={p.name}
+                price={p.price}
+                stock={p.stock}
               />
             </Center>
 

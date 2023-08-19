@@ -4,16 +4,14 @@ import { BsFillCartPlusFill } from "react-icons/bs"
 import { useContext, useState } from 'react'
 import { CartContext } from '../context/ShoppingCartContext'
 
-const ItemCount = ({ product }) => {
-
-  console.log(product)
+const ItemCount = ({ id, name, price, stock }) => {
 
   const [count, setCount] = useState(1)
 
   const { cart } = useContext(CartContext)
 
   const add = (e) => {
-    count < product.stock ? setCount(count + 1) : e.preventDefault()
+    count < stock ? setCount(count + 1) : e.preventDefault()
   }
 
   const subtract = (e) => {
@@ -55,7 +53,7 @@ const ItemCount = ({ product }) => {
       </Flex>
 
       <Text textAlign={'center'} my={3} border={'1px'} borderRadius={'full'}>
-        <p>Stock disponible: {product.stock}</p>
+        <p>Stock disponible: {stock}</p>
       </Text>
 
       <Flex>
