@@ -5,7 +5,7 @@ import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer'
 import Home from './components/Home'
 import Cart from './components/Cart'
-import ShoppingCartContext from './context/ShoppingCartContext'
+import ShoppingCartProvider from './context/ShoppingCartContext'
 import { useEffect, useState } from 'react'
 import Loading from './components/Loading'
 
@@ -31,7 +31,7 @@ const App = () => {
 
     <BrowserRouter>
 
-      <ShoppingCartContext>
+      <ShoppingCartProvider>
 
         <Box bg='#4193bf'>
           <NavBar />
@@ -47,7 +47,7 @@ const App = () => {
 
         </Routes>
 
-      </ShoppingCartContext>
+      </ShoppingCartProvider>
 
     </BrowserRouter>
 

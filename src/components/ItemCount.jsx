@@ -4,11 +4,11 @@ import { BsFillCartPlusFill } from "react-icons/bs"
 import { useContext, useState } from 'react'
 import { CartContext } from '../context/ShoppingCartContext'
 
-const ItemCount = ({ id, name, price, stock }) => {
+const ItemCount = ({ id, name, price, stock, image }) => {
 
   const [count, setCount] = useState(1)
 
-  const { cart } = useContext(CartContext)
+  const [cart, setCart] = useContext(CartContext)
 
   const add = (e) => {
     count < stock ? setCount(count + 1) : e.preventDefault()
@@ -18,8 +18,19 @@ const ItemCount = ({ id, name, price, stock }) => {
     count > 1 ? setCount(count - 1) : e.preventDefault()
   }
 
-  const addToCart = (e) => {
-
+  const addToCart = () => {
+    setCart((itemsOnCart) => {
+      const isItemOnCart = cart.find((item) => item.id === id)
+      if (isItemOnCart) {
+        return itemsOnCart.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity + count }
+          }
+        })
+      } else {
+        return [...itemsOnCart, { id, name, price, quantity: count }]
+      }
+    })
   }
 
   return (

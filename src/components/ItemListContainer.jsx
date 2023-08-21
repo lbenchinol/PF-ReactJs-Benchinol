@@ -20,25 +20,7 @@ const ItemListContainer = () => {
       const docs = snapshot.docs.map((doc) => doc.data())
       setProducts(docs)
     })
-
   }, [])
-
-  /* const getProducts = new Promise((resolve, reject) => {
-    if (products.length > 0) {
-      setTimeout(() => {
-        resolve(products)
-      }, 2000)
-    } else {
-      reject(new Error("No hay datos"))
-    }
-  })
-
-  getProducts
-    .then((res) => {
-    })
-    .catch((error) => {
-      console.log(error)
-    }) */
 
   const filteredProducts = products.filter((product) => product.category === category)
 

@@ -8,14 +8,13 @@ const ItemDetail = ({ products }) => {
 
   const { id } = useParams()
 
-  const filteredProducts = products.filter((product) => product.id == id)
+  const filteredProduct = products.filter((product) => product.id == id)
 
   return (
     <>
-      {filteredProducts.map((p) => {
+      {filteredProduct.map((p) => {
         return (
           <div key={p.id}>
-
             <Center >
               <Card maxW='sm' m={2}>
                 <CardBody>
@@ -43,11 +42,10 @@ const ItemDetail = ({ products }) => {
                 name={p.name}
                 price={p.price}
                 stock={p.stock}
+                image={p.image}
               />
             </Center>
-
           </div>
-
         )
       })}
     </>
