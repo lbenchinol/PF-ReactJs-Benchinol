@@ -8,7 +8,7 @@ const ItemCount = ({ id, name, price, stock, image }) => {
 
   const [count, setCount] = useState(1)
 
-  const [cart, setCart] = useContext(CartContext)
+  const { addItem } = useContext(CartContext)
 
   const add = (e) => {
     count < stock ? setCount(count + 1) : e.preventDefault()
@@ -19,18 +19,8 @@ const ItemCount = ({ id, name, price, stock, image }) => {
   }
 
   const addToCart = () => {
-    setCart((itemsOnCart) => {
-      const isItemOnCart = cart.find((item) => item.id === id)
-      if (isItemOnCart) {
-        return itemsOnCart.map((item) => {
-          if (item.id === id) {
-            return { ...item, quantity: item.quantity + count }
-          }
-        })
-      } else {
-        return [...itemsOnCart, { id, name, price, quantity: count }]
-      }
-    })
+    const item = { id, name, price, stock, image }
+    addItem(item, count)
   }
 
   return (
@@ -64,7 +54,7 @@ const ItemCount = ({ id, name, price, stock, image }) => {
       </Flex>
 
       <Text textAlign={'center'} my={3} border={'1px'} borderRadius={'full'}>
-        <p>Stock disponible: {stock}</p>
+        Stock disponible: {stock}
       </Text>
 
       <Flex>

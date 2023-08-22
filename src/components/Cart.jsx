@@ -1,25 +1,29 @@
 import { useContext } from 'react'
 import { CartContext } from '../context/ShoppingCartContext'
-import { Text, Card, Image, CardBody, Heading, Flex, Grid, GridItem } from '@chakra-ui/react'
-import SendOrder from './SendOrder'
-
+import { Text, Card, Image, CardBody, Heading, Flex, Grid, GridItem, Box, Center, Button } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import CartItemCount from './CartItemCount'
 
 const Cart = () => {
 
-  const [cart, setCart] = useContext(CartContext)
+  const { cart } = useContext(CartContext)
+
+  const total = cart.reduce((acum, curr) => {
+    return acum + (curr.quantity * curr.price)
+  }, 0)
 
   return (
-    <Grid templateColumns='repeat(6, 1fr)' gap='2'>
-
-      <GridItem colSpan='4' h='auto' bg='aquamarine'>
+    <Grid templateColumns='repeat(6, 1fr)' gap='2' mt='30px'>
+      <GridItem colSpan='4' h='auto'>
         {cart.map((p) => {
           return (
             <div key={p.id}>
               <Card
-                mx={'30px'}
-                my={'5px'}
-                p={'5px'}
-                border={'1px'}
+                mx='30px'
+                mb='10px'
+                p='5px'
+                border='1px'
+                boxShadow='lg'
                 direction={{ base: 'column', sm: 'row' }}
                 overflow='hidden'
                 variant='unstyled'
@@ -32,35 +36,37 @@ const Cart = () => {
                 />
                 <CardBody>
                   <Heading size='md'>{p.name}</Heading>
-                  <Flex mt={'10px'}>
-                    <Text>Precio x unidad: </Text>
-                    <Text fontWeight={'semibold'}>${p.price}</Text>
+                  <Flex mt='10px'>
+                    <Text>Precio x unidad</Text>
+                    <Text fontWeight='semibold'>: ${p.price}</Text>
                   </Flex>
                 </CardBody>
 
-                {/* --- <CartCount/> ---
-                    Resta hasta 1 de items
-                    Suma de items hasta max stock
-                    Boton de borrar todo el item cart.pop(id)
-                */}
-
+                <CartItemCount
+                  key={p.id}
+                  id={p.id}
+                  quantity={p.quantity}
+                />
               </Card>
             </div>
           )
         })}
       </GridItem>
 
-      <GridItem colSpan='2' h='auto' bg='beige'>
-        <Flex>
-          Info de la compra y boton de Comprar!
-
-          <SendOrder />
-
-          {/* Boton de "Finalizar compra" redirige hacia Form <EndPurchase/> para agregar datos y enviar a db la orden y restar de la db el stock */}
-
-        </Flex>
+      <GridItem colSpan='2' h='auto'>
+        <Box mr='20px' p='20px' border='2px' borderRadius='lg' boxShadow='lg'>
+          <Center fontSize='2xl' as='b' borderBottom='1px'>Resúmen de compra</Center>
+          <Box my='10px'>
+            <Text fontSize='xl'>Envío: Gratis</Text>
+            <Text fontSize='xl' as='b'>Total: ${total}</Text>
+          </Box>
+          <Center mt='20px'>
+            <Link to={'/sendorder'}>
+              <Button colorScheme='blue' variant='solid' size='sm'>Finalizar compra</Button>
+            </Link>
+          </Center>
+        </Box>
       </GridItem>
-
     </Grid>
   )
 }

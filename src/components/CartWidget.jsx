@@ -5,7 +5,7 @@ import { useContext } from 'react';
 
 const CartWidget = () => {
 
-  const [cart, setCart] = useContext(CartContext)
+  const { cart } = useContext(CartContext)
 
   return (
     <Flex p='1' m='2' border='2px' borderRadius='10' color='white'>
