@@ -14,10 +14,16 @@ export const ItemListProvider = ({ children }) => {
 
     const itemsCollection = collection(db, 'products')
 
-    getDocs(itemsCollection).then((snapshot) => {
-      const docs = snapshot.docs.map((doc) => doc.data())
-      setProducts(docs)
-    })
+    getDocs(itemsCollection)
+      .then((snapshot) => {
+        const docs = snapshot.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id }
+        })
+        setProducts(docs)
+      })
+
+
+
   }, [])
 
   return (

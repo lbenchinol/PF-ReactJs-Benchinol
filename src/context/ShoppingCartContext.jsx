@@ -18,11 +18,21 @@ export const ShoppingCartProvider = ({ children }) => {
             if (isItemOnCart) {
                 return itemsOnCart.map((i) => {
                     if (i.id === item.id) {
-                        return { ...i, quantity: i.quantity + newQuantity }
+                        if ((i.quantity + newQuantity) <= i.stock) {
+                            return { ...i, quantity: i.quantity + newQuantity }
+                        } else {
+                            return i
+                        }
+                    } else {
+                        return i
                     }
                 })
             } else {
-                return [...itemsOnCart, { ...item, quantity: newQuantity }]
+                if (newQuantity <= item.stock) {
+                    return [...itemsOnCart, { ...item, quantity: newQuantity }]
+                } else {
+                    return itemsOnCart
+                }
             }
         })
     }
@@ -31,9 +41,13 @@ export const ShoppingCartProvider = ({ children }) => {
         setCart((itemsOnCart) => {
             return itemsOnCart.map((i) => {
                 if (i.id === id) {
-                    if (i.stock > 1) {
-                        return [...itemsOnCart, { ...i, quantity: quantity - 1 }]
+                    if (i.quantity > 1) {
+                        return { ...i, quantity: i.quantity - 1 }
+                    } else {
+                        return i
                     }
+                } else {
+                    return i
                 }
             })
         })
@@ -44,9 +58,21 @@ export const ShoppingCartProvider = ({ children }) => {
         setCart(newCart)
     }
 
+    const totalPrice = () => {
+        return cart.reduce((acum, curr) => {
+            return acum + (curr.quantity * curr.price)
+        }, 0)
+    }
+
+    const totalQuantity = () => {
+        return cart.reduce((acum, curr) => {
+            return acum + (curr.quantity)
+        }, 0)
+    }
+
     return (
 
-        <CartContext.Provider value={{ cart, addItem, subtractItem, removeItem }}>
+        <CartContext.Provider value={{ cart, addItem, subtractItem, removeItem, totalPrice, totalQuantity }}>
 
             {children}
 

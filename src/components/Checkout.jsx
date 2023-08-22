@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { collection, addDoc, getFirestore } from 'firebase/firestore'
 
-const SendOrder = () => {
+const Checkout = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [orderId, setOrderId] = useState(null)
@@ -34,4 +34,4 @@ const SendOrder = () => {
     )
 }
 
-export default SendOrder
+export default Checkout

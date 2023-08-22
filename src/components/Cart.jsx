@@ -6,11 +6,9 @@ import CartItemCount from './CartItemCount'
 
 const Cart = () => {
 
-  const { cart } = useContext(CartContext)
+  const { cart, totalPrice } = useContext(CartContext)
 
-  const total = cart.reduce((acum, curr) => {
-    return acum + (curr.quantity * curr.price)
-  }, 0)
+  const total = totalPrice()
 
   return (
     <Grid templateColumns='repeat(6, 1fr)' gap='2' mt='30px'>
@@ -61,7 +59,7 @@ const Cart = () => {
             <Text fontSize='xl' as='b'>Total: ${total}</Text>
           </Box>
           <Center mt='20px'>
-            <Link to={'/sendorder'}>
+            <Link to={'/checkout'}>
               <Button colorScheme='blue' variant='solid' size='sm'>Finalizar compra</Button>
             </Link>
           </Center>

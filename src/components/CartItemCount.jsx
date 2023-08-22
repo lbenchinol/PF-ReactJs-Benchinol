@@ -24,7 +24,8 @@ const CartItemCount = ({ id, quantity }) => {
     }, [products])
 
     const add = () => {
-        addItem({ id: id }, 1)
+        const item = { id }
+        addItem(item, 1)
     }
 
     const subtract = () => {
@@ -73,7 +74,7 @@ const CartItemCount = ({ id, quantity }) => {
             </Flex>
 
             <Flex>
-                <Text textAlign={'center'} my={3} border={'1px'} borderRadius={'full'}>
+                <Text textAlign={'center'} my={3} border={'1px'} borderRadius={'full'} p={2}>
                     Stock disponible: {stock}
                 </Text>
             </Flex>

@@ -5,7 +5,9 @@ import { useContext } from 'react';
 
 const CartWidget = () => {
 
-  const { cart } = useContext(CartContext)
+  const { cart, totalQuantity } = useContext(CartContext)
+
+  const quantity = totalQuantity()
 
   return (
     <Flex p='1' m='2' border='2px' borderRadius='10' color='white'>
@@ -14,7 +16,7 @@ const CartWidget = () => {
       </Box>
       <Spacer />
       <Box m={1}>
-        <p>{cart.length}</p>
+        <p>{quantity}</p>
       </Box>
     </Flex>
   )

@@ -5,7 +5,7 @@ import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer'
 import Home from './components/Home'
 import Cart from './components/Cart'
-import SendOrder from './components/SendOrder'
+import Checkout from './components/Checkout'
 import ShoppingCartProvider from './context/ShoppingCartContext'
 import ItemListProvider from './context/ItemListContext'
 import { useEffect, useState } from 'react'
@@ -44,7 +44,7 @@ const App = () => {
             <Route exact path='/category/:category' element={<ItemListContainer />} />
             <Route exact path='/all' element={<ItemListContainer />} />
             <Route exact path='/item/:id' element={<ItemDetailContainer />} />
-            <Route exact path='/sendorder' element={<SendOrder />} />
+            <Route exact path='/checkout' element={<Checkout />} />
 
           </Routes>
 
