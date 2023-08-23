@@ -1,13 +1,14 @@
 import React from 'react'
 import Item from './Item'
-import { Flex } from '@chakra-ui/react'
+import { Wrap, WrapItem } from '@chakra-ui/react'
 
 const ItemList = ({ products }) => {
   return (
-    <Flex justifyContent={'space-around'}>
+    <Wrap spacing='5px' justify='center'>
 
       {products.map((p) => {
         return (
+          <WrapItem>
             <Item
               key={p.id}
               id={p.id}
@@ -15,10 +16,11 @@ const ItemList = ({ products }) => {
               price={p.price}
               image={p.image}
             />
+          </WrapItem>
         )
       })}
 
-    </Flex>
+    </Wrap>
   )
 }
 

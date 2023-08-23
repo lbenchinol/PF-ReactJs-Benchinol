@@ -1,4 +1,3 @@
-import React from 'react'
 import { Card, CardBody, Stack, Heading, Divider, Button, Image, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
@@ -14,7 +13,7 @@ const Item = ({ name, id, price, image }) => {
           />
           <Stack mt='6' spacing='3'>
             <Heading size='md' textAlign={'center'}>{name}</Heading>
-            <Text color='blue.600' fontSize='2xl'  textAlign={'center'}>
+            <Text color='blue.600' fontSize='2xl' textAlign={'center'}>
               ${price}
             </Text>
             <Button variant='ghost' colorScheme='blue'>

@@ -9,7 +9,7 @@ const Cart = () => {
   const { cart, totalPrice } = useContext(CartContext)
 
   const total = totalPrice()
-
+  
   return (
     <Grid templateColumns='repeat(6, 1fr)' gap='2' mt='30px'>
       <GridItem colSpan='4' h='auto'>
