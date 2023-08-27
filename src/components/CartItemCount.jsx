@@ -7,13 +7,11 @@ import { ListContext } from '../context/ItemListContext'
 
 const CartItemCount = ({ id, quantity }) => {
 
-    const [count, setCount] = useState(quantity)
-
     const [stock, setStock] = useState(0)
 
     const { addItem, subtractItem, removeItem } = useContext(CartContext)
 
-    const [products] = useContext(ListContext)
+    const { products } = useContext(ListContext)
 
     useEffect(() => {
         products.map((item) => {

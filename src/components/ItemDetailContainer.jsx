@@ -4,7 +4,7 @@ import { ListContext } from '../context/ItemListContext'
 
 const ItemDetailContainer = () => {
 
-  const [products] = useContext(ListContext)
+  const { products } = useContext(ListContext)
 
   return (
     <>

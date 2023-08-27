@@ -1,5 +1,4 @@
-import { Menu, MenuButton, MenuList, MenuItem, Button, Flex, Box, Spacer } from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { Flex, Box, Spacer, Text } from '@chakra-ui/react'
 import CartWidget from './CartWidget'
 import Logo from '../assets/Logo-TS.png'
 import { Link } from 'react-router-dom'
@@ -13,26 +12,12 @@ const NavBar = () => {
                 </Link>
             </Box>
 
-            <Box m={1}>
-                <Menu>
-                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                        Productos
-                    </MenuButton>
-                    <MenuList>
-                        <MenuItem>
-                            <Link to={`/all`}>Todos los productos</Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link to={`/category/termos`}>Termos</Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link to={`/category/botellas`}>Botellas</Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link to={`/category/vasos`}>Vasos</Link>
-                        </MenuItem>
-                    </MenuList>
-                </Menu>
+            <Box ml={5}>
+                <button className='navProductBtn'>
+                    <Link to={`/products`}>
+                        <Text fontSize='lg' fontWeight='bold' textColor='whiteAlpha.900' p={5} sx={{ '.navProductBtn:hover &': { backgroundColor: 'whiteAlpha.300' } }}>Productos</Text>
+                    </Link>
+                </button>
             </Box>
 
             <Spacer />

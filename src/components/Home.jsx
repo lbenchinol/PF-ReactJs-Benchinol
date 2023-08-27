@@ -1,11 +1,6 @@
-import React from 'react'
 import { Text } from '@chakra-ui/react'
-import { useContext } from 'react'
-import { CartContext } from '../context/ShoppingCartContext'
 
 const Home = () => {
-
-  const { cart } = useContext(CartContext)
 
   return (
     <>

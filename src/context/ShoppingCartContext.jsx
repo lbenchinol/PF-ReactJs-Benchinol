@@ -1,9 +1,12 @@
 import { createContext, useEffect } from 'react'
 import { useState } from 'react'
+import { useToast } from '@chakra-ui/react'
 
 export const CartContext = createContext()
 
 export const ShoppingCartProvider = ({ children }) => {
+
+    const toast = useToast()
 
     const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
     const [cart, setCart] = useState(cartFromLocalStorage)
@@ -29,6 +32,13 @@ export const ShoppingCartProvider = ({ children }) => {
                 })
             } else {
                 if (newQuantity <= item.stock) {
+                    toast({
+                        title: 'ITEM AGREGADO',
+                        status: 'success',
+                        duration: 3000,
+                        position: 'top-right',
+                        isClosable: true,
+                    })
                     return [...itemsOnCart, { ...item, quantity: newQuantity }]
                 } else {
                     return itemsOnCart
@@ -56,6 +66,24 @@ export const ShoppingCartProvider = ({ children }) => {
     const removeItem = (id) => {
         const newCart = cart.filter(p => p.id !== id)
         setCart(newCart)
+        toast({
+            title: 'ITEM ELIMINADO',
+            status: 'success',
+            duration: 3000,
+            position: 'top-right',
+            isClosable: true,
+        })
+    }
+
+    const clearCart = () => {
+        setCart([])
+        toast({
+            title: 'CARRITO HA SIDO VACIADO',
+            status: 'success',
+            duration: 3000,
+            position: 'top-right',
+            isClosable: true,
+        })
     }
 
     const totalPrice = () => {
@@ -72,7 +100,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
     return (
 
-        <CartContext.Provider value={{ cart, addItem, subtractItem, removeItem, totalPrice, totalQuantity }}>
+        <CartContext.Provider value={{ cart, addItem, subtractItem, removeItem, clearCart, totalPrice, totalQuantity }}>
 
             {children}
 

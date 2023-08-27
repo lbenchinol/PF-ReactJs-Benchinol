@@ -8,22 +8,8 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import ShoppingCartProvider from './context/ShoppingCartContext'
 import ItemListProvider from './context/ItemListContext'
-import { useEffect, useState } from 'react'
-import Loading from './components/Loading'
 
 const App = () => {
-
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [])
-
-  if (loading) {
-    return <Loading />
-  }
 
   return (
 
@@ -42,7 +28,7 @@ const App = () => {
             <Route exact path='/' element={<Home />} />
             <Route exact path='/cart' element={<Cart />} />
             <Route exact path='/category/:category' element={<ItemListContainer />} />
-            <Route exact path='/all' element={<ItemListContainer />} />
+            <Route exact path='/products' element={<ItemListContainer />} />
             <Route exact path='/item/:id' element={<ItemDetailContainer />} />
             <Route exact path='/checkout' element={<Checkout />} />
 

@@ -11,7 +11,6 @@ export const ItemListProvider = ({ children }) => {
   useEffect(() => {
 
     const db = getFirestore()
-
     const itemsCollection = collection(db, 'products')
 
     getDocs(itemsCollection)
@@ -21,13 +20,10 @@ export const ItemListProvider = ({ children }) => {
         })
         setProducts(docs)
       })
-
-
-
   }, [])
 
   return (
-    <ListContext.Provider value={[products]}>
+    <ListContext.Provider value={{ products }}>
 
       {children}
 
