@@ -1,14 +1,8 @@
 import React from 'react'
 import { Card, CardBody, Stack, Heading, Divider, Image, Text, Center } from '@chakra-ui/react'
-import { useParams } from "react-router"
 import ItemCount from './ItemCount'
 
-
-const ItemDetail = ({ products }) => {
-
-  const { id } = useParams()
-
-  const filteredProduct = products.filter((product) => product.id == id)
+const ItemDetail = ({ filteredProduct }) => {
 
   return (
     <>

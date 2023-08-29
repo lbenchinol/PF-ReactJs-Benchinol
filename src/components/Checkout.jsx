@@ -4,19 +4,19 @@ import { CartContext } from '../context/ShoppingCartContext'
 import { Button, FormLabel, Input, useToast } from '@chakra-ui/react'
 
 const Checkout = () => {
-
+    
     const toast = useToast()
-
+    
     const { cart, clearCart, totalPrice } = useContext(CartContext)
-
+    
     const [check, setCheck] = useState(false)
     const [success, setSuccess] = useState(false)
-
+    
     const [name, setName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [email2, setEmail2] = useState("")
-
+    
     const [orderId, setOrderId] = useState(null)
     const total = totalPrice()
     const [items, setItems] = useState([])
@@ -30,8 +30,9 @@ const Checkout = () => {
     }
 
     const date = new Date().toLocaleDateString()
-    
+
     const order = { buyer: buyer, items: items, total: total, date: date }
+
     const db = getFirestore()
     const ordersCollection = collection(db, "orders")
 
@@ -91,24 +92,37 @@ const Checkout = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        checkInputs()
-        if (check) {
-            createOrder()
-            addDoc(ordersCollection, order)
-                .then(({ id }) =>
-                    setOrderId(id))
 
-            clearCart()
+        if (cart.length > 0) {
+            checkInputs()
+            if (check) {
+                createOrder()
 
+                /* addDoc(ordersCollection, order)
+                    .then(({ id }) =>
+                        setOrderId(id))
+    
+                clearCart() */
+
+                toast({
+                    title: 'COMPRA EXITOSA',
+                    status: 'success',
+                    duration: 3000,
+                    position: 'bottom',
+                })
+
+                // setSuccess(true)
+
+                console.log(items)
+
+            }
+        } else {
             toast({
-                title: 'COMPRA EXITOSA',
-                status: 'success',
+                title: 'NO HAY PRODUCTOS EN EL CARRITO',
+                status: 'error',
                 duration: 3000,
                 position: 'bottom',
             })
-            setTimeout(() => {
-                setSuccess(true)
-            }, 3000);
         }
     }
 

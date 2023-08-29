@@ -1,11 +1,11 @@
-import { Box, Icon, Spacer, Flex } from '@chakra-ui/react';
+import { Box, Icon, Spacer, Flex, Text, Center } from '@chakra-ui/react';
 import { BsFillCartFill } from "react-icons/bs";
 import { CartContext } from '../context/ShoppingCartContext';
 import { useContext } from 'react';
 
 const CartWidget = () => {
 
-  const { cart, totalQuantity } = useContext(CartContext)
+  const { totalQuantity } = useContext(CartContext)
 
   const quantity = totalQuantity()
 
@@ -15,19 +15,11 @@ const CartWidget = () => {
         <Icon as={BsFillCartFill} width='20px' height='20px' m={1} />
       </Box>
       <Spacer />
-      <Box m={1}>
-        <p>{quantity}</p>
-      </Box>
+      <Center mb={'4px'} mr={'5px'}>
+        <Text w={'18px'} textAlign={'center'}>{quantity}</Text>
+      </Center>
     </Flex>
   )
 }
 
 export default CartWidget
-
-// import Card from '@mui/joy/Card'
-{/* <Card
-  color="neutral"
-  orientation="horizontal"
-  size="sm"
-  variant="soft"
-/> */}

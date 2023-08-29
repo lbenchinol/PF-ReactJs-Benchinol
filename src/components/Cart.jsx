@@ -4,13 +4,27 @@ import { Text, Card, Image, CardBody, Heading, Flex, Grid, GridItem, Box, Center
 import { Link } from 'react-router-dom'
 import CartItemCount from './CartItemCount'
 import { BsFillCartXFill } from "react-icons/bs"
+import { useToast } from '@chakra-ui/react'
 
 const Cart = () => {
+
+  const toast = useToast()
 
   const { cart, clearCart, totalPrice, totalQuantity } = useContext(CartContext)
 
   const total = totalPrice()
   const quantity = totalQuantity()
+
+  const clear = () => {
+    clearCart()
+    toast({
+      title: 'CARRITO HA SIDO VACIADO',
+      status: 'success',
+      duration: 3000,
+      position: 'bottom',
+      isClosable: true,
+    })
+  }
 
   if (quantity > 0) {
     return (
@@ -68,7 +82,7 @@ const Cart = () => {
             </Center>
           </Box>
           <Center mt={5}>
-            <Button rightIcon={<BsFillCartXFill />} colorScheme='blue' variant='outline' size='md' onClick={clearCart}>Limpar carrito</Button>
+            <Button rightIcon={<BsFillCartXFill />} colorScheme='blue' variant='outline' size='md' onClick={clear}>Limpar carrito</Button>
           </Center>
         </GridItem>
       </Grid>

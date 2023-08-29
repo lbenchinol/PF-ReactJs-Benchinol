@@ -8,6 +8,7 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import ShoppingCartProvider from './context/ShoppingCartContext'
 import ItemListProvider from './context/ItemListContext'
+import PageNotFound from './components/PageNotFound'
 
 const App = () => {
 
@@ -31,6 +32,7 @@ const App = () => {
             <Route exact path='/products' element={<ItemListContainer />} />
             <Route exact path='/item/:id' element={<ItemDetailContainer />} />
             <Route exact path='/checkout' element={<Checkout />} />
+            <Route path='*' element={<PageNotFound />} />
 
           </Routes>
 

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { MinusIcon, AddIcon } from '@chakra-ui/icons'
 import { BsFillTrashFill } from "react-icons/bs"
 import { CartContext } from '../context/ShoppingCartContext'
-import { Box, Button, Flex, IconButton, Text } from '@chakra-ui/react'
+import { Box, Flex, IconButton, Text } from '@chakra-ui/react'
 import { ListContext } from '../context/ItemListContext'
 
 const CartItemCount = ({ id, quantity }) => {
@@ -35,7 +35,7 @@ const CartItemCount = ({ id, quantity }) => {
     }
 
     return (
-        <Box key={id}>
+        <Box key={id} mr={'8px'}>
             <Flex>
                 <IconButton
                     onClick={subtract}
@@ -44,11 +44,12 @@ const CartItemCount = ({ id, quantity }) => {
                     variant='solid'
                     colorScheme='blue'
                     aria-label='Done'
-                    fontSize='20px'
+                    fontSize='xs'
                     icon={<MinusIcon />}
+                    size={'xs'}
                 />
 
-                <Text fontSize={40} textAlign={'center'} fontWeight={600} mx={12}>
+                <Text fontSize={'xl'} textAlign={'center'} fontWeight={600} mt={'8px'} mx={12} w={'20px'}>
                     {quantity}
                 </Text>
 
@@ -59,22 +60,26 @@ const CartItemCount = ({ id, quantity }) => {
                     variant='solid'
                     colorScheme='blue'
                     aria-label='Done'
-                    fontSize='20px'
+                    fontSize='xs'
                     icon={<AddIcon />}
-                />
-
-                <Button
-                    onClick={remove}
-                    rightIcon={<BsFillTrashFill />}
-                    colorScheme='blue'
-                    variant='outline'
+                    size={'xs'}
                 />
             </Flex>
 
             <Flex>
-                <Text textAlign={'center'} my={3} border={'1px'} borderRadius={'full'} p={2}>
+                <Text textAlign={'center'} my={3} border={'1px'} borderRadius={'full'} p={1} fontSize={'xs'} fontWeight={'semibold'}>
                     Stock disponible: {stock}
                 </Text>
+
+                <IconButton
+                    onClick={remove}
+                    icon={<BsFillTrashFill />}
+                    colorScheme='blue'
+                    variant='outline'
+                    size={'sm'}
+                    mt={'10px'}
+                    ml={'14px'}
+                />
             </Flex>
         </Box>
     )

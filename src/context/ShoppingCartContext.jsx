@@ -36,7 +36,7 @@ export const ShoppingCartProvider = ({ children }) => {
                         title: 'ITEM AGREGADO',
                         status: 'success',
                         duration: 3000,
-                        position: 'top-right',
+                        position: 'bottom',
                         isClosable: true,
                     })
                     return [...itemsOnCart, { ...item, quantity: newQuantity }]
@@ -70,20 +70,13 @@ export const ShoppingCartProvider = ({ children }) => {
             title: 'ITEM ELIMINADO',
             status: 'success',
             duration: 3000,
-            position: 'top-right',
+            position: 'bottom',
             isClosable: true,
         })
     }
 
     const clearCart = () => {
         setCart([])
-        toast({
-            title: 'CARRITO HA SIDO VACIADO',
-            status: 'success',
-            duration: 3000,
-            position: 'top-right',
-            isClosable: true,
-        })
     }
 
     const totalPrice = () => {
