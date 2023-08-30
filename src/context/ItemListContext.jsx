@@ -7,6 +7,7 @@ export const ListContext = createContext(null)
 export const ItemListProvider = ({ children }) => {
 
   const [products, setProducts] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
 
@@ -19,11 +20,12 @@ export const ItemListProvider = ({ children }) => {
           return { ...doc.data(), id: doc.id }
         })
         setProducts(docs)
+        setLoaded(true)
       })
   }, [])
 
   return (
-    <ListContext.Provider value={{ products }}>
+    <ListContext.Provider value={{ products, loaded }}>
 
       {children}
 

@@ -1,33 +1,25 @@
 import { useContext, useState } from 'react'
 import { collection, addDoc, getFirestore } from 'firebase/firestore'
 import { CartContext } from '../context/ShoppingCartContext'
-import { Button, FormLabel, Input, useToast } from '@chakra-ui/react'
+import { Box, Button, Center, FormLabel, Input, Text, useToast } from '@chakra-ui/react'
 
 const Checkout = () => {
-    
+
+    const { cart, clearCart, totalPrice, createOrder } = useContext(CartContext)
     const toast = useToast()
-    
-    const { cart, clearCart, totalPrice } = useContext(CartContext)
-    
-    const [check, setCheck] = useState(false)
-    const [success, setSuccess] = useState(false)
-    
+    const total = totalPrice()
+
     const [name, setName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [email2, setEmail2] = useState("")
-    
-    const [orderId, setOrderId] = useState(null)
-    const total = totalPrice()
-    const [items, setItems] = useState([])
+
+    let check = false
+    const [orderId, setOrderId] = useState()
+    const [success, setSuccess] = useState(false)
+    const items = createOrder()
 
     const buyer = { name: name, lastName: lastName, email: email }
-
-    const createOrder = () => {
-        setItems(cart.map((p) => {
-            return { id: p.id, name: p.name, price: p.price, quantity: p.quantity }
-        }))
-    }
 
     const date = new Date().toLocaleDateString()
 
@@ -86,35 +78,27 @@ const Checkout = () => {
         }
 
         if (nameChk && lastChk && emailChk) {
-            setCheck(true)
+            check = true
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         if (cart.length > 0) {
             checkInputs()
             if (check) {
-                createOrder()
-
-                /* addDoc(ordersCollection, order)
+                addDoc(ordersCollection, order)
                     .then(({ id }) =>
                         setOrderId(id))
-    
-                clearCart() */
 
+                clearCart()
                 toast({
                     title: 'COMPRA EXITOSA',
                     status: 'success',
                     duration: 3000,
                     position: 'bottom',
                 })
-
-                // setSuccess(true)
-
-                console.log(items)
-
+                setSuccess(true)
             }
         } else {
             toast({
@@ -126,37 +110,55 @@ const Checkout = () => {
         }
     }
 
-    if (success) {
+    if (success === false && cart.length > 0) {
         return (
-            <>
-                <p>Código de su orden de compra: {orderId}</p>
-            </>
+            <Center mt={'30px'}>
+                <Box border={'1px'} borderRadius={'xl'} p={5} shadow={'lg'} w={'500px'}>
+                    <form onSubmit={handleSubmit}>
+                        <FormLabel fontSize={'xl'} fontWeight={'semibold'} mb={0}>Nombre</FormLabel>
+                        <Input type='text' mb={5} shadow={'sm'} placeholder='Nombre' onChange={
+                            (e) => setName(e.target.value)} />
+
+                        <FormLabel fontSize={'xl'} fontWeight={'semibold'} mb={0}>Apellido</FormLabel>
+                        <Input type='text' mb={5} shadow={'sm'} placeholder='Apellido' onChange={
+                            (e) => setLastName(e.target.value)} />
+
+                        <FormLabel fontSize={'xl'} fontWeight={'semibold'} mb={0}>Email</FormLabel>
+                        <Input type='email' mb={5} shadow={'sm'} placeholder='Email' onChange={
+                            (e) => setEmail(e.target.value)} />
+
+                        <FormLabel fontSize={'xl'} fontWeight={'semibold'} mb={0}>Reingrese su email</FormLabel>
+                        <Input type='email' mb={5} shadow={'sm'} placeholder='Email' onChange={
+                            (e) => setEmail2(e.target.value)} />
+                        <Center>
+                            <Button type='submit' colorScheme='blue' shadow={'md'}>Confirmar compra</Button>
+                        </Center>
+
+                    </form>
+                </Box>
+            </Center>
         )
-    } else {
+    } else if (success) {
         return (
-            <>
-                <form onSubmit={handleSubmit}>
-
-                    <FormLabel>Nombre</FormLabel>
-                    <Input type='text' onChange={
-                        (e) => setName(e.target.value)} />
-
-                    <FormLabel>Apellido</FormLabel>
-                    <Input type='text' onChange={
-                        (e) => setLastName(e.target.value)} />
-
-                    <FormLabel>Email</FormLabel>
-                    <Input type='email' onChange={
-                        (e) => setEmail(e.target.value)} />
-
-                    <FormLabel>Reingrese su email</FormLabel>
-                    <Input type='email' onChange={
-                        (e) => setEmail2(e.target.value)} />
-
-                    <Button type='submit' colorScheme='blue' >Confirmar compra</Button>
-
-                </form>
-            </>
+            <Center mt={'50px'}>
+                <Box border={'2px'} borderRadius={'xl'} shadow={'lg'} pt={'20px'} px={'100px'} pb={'30px'}>
+                    <Center mb={'50px'}>
+                        <Text fontSize={'4xl'} fontWeight={'black'}>¡FELICITACIONES!</Text>
+                    </Center>
+                    <Center>
+                        <Text fontSize={'2xl'} fontWeight={'bold'}>Código de su orden de compra:</Text>
+                    </Center>
+                    <Center>
+                        <Text fontSize={'lg'} borderBottom={'1px'}>{orderId}</Text>
+                    </Center>
+                </Box>
+            </Center>
+        )
+    } else if (success === false && cart.length === 0) {
+        return (
+            <Center mt={100}>
+                <Text fontSize={'4xl'} fontWeight={'black'}>NO HAY PRODUCTOS EN EL CARRITO</Text>
+            </Center>
         )
     }
 }

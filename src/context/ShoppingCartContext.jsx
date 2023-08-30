@@ -91,9 +91,15 @@ export const ShoppingCartProvider = ({ children }) => {
         }, 0)
     }
 
+    const createOrder = () => {
+        return cart.map((p) => {
+            return { id: p.id, name: p.name, price: p.price, quantity: p.quantity }
+        })
+    }
+
     return (
 
-        <CartContext.Provider value={{ cart, addItem, subtractItem, removeItem, clearCart, totalPrice, totalQuantity }}>
+        <CartContext.Provider value={{ cart, addItem, subtractItem, removeItem, clearCart, totalPrice, totalQuantity, createOrder }}>
 
             {children}
 
