@@ -1,14 +1,16 @@
-import { Flex, Box, Spacer, Text } from '@chakra-ui/react'
+import { Flex, Box, Spacer, Text, Image } from '@chakra-ui/react'
 import CartWidget from './CartWidget'
-import Logo from '../assets/Logo-TS.png'
 import { Link } from 'react-router-dom'
 
 const NavBar = () => {
+
+    const logo = 'https://firebasestorage.googleapis.com/v0/b/termo-store.appspot.com/o/Logo-TS.png?alt=media&token=c2afd14d-ab1d-41f4-96bf-f64bc31c7ceb'
+
     return (
         <Flex align="center" justify="center">
             <Box m={2} mx='3'>
                 <Link to={`/`}>
-                    <img src={Logo} alt="Logo Termo Store" width='100px' height='50px' />
+                    <Image src={logo} alt="Logo Termo Store" width='100px' height='50px' />
                 </Link>
             </Box>
 
